@@ -40,7 +40,7 @@ pip install -r requirements.txt
 
 ### Clone the Repository:
 ```bash
-git clone https://github.com/lacebx/me0-mini_mvp.git
+git clone https://github.com/lacebx/c3-Arsene.git
 cd project-directory
 ```
 

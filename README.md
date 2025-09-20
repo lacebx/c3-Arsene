@@ -79,7 +79,6 @@ The system recognizes various greetings and responds appropriately:
 - "hi", "hello", "hey", "greetings"
 - "what is your name", "who are you"
 - "how are you", "what's up"
-- "good morning", "good afternoon", "good evening"
 - "thanks", "thank you"
 - "goodbye", "bye", "farewell"
 

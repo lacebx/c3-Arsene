@@ -1,115 +1,88 @@
-# Arsène Manzi's Virtual Assistant Chatbot
+# Simple Flask Chat API
 
-## Overview
-
-The assistant chatbot is intended to provide quick, conversational responses about my background, skills, and projects. The chatbot is designed to retrieve context from a custom-curated dataset (stored in `curated_data.json`) using a Retrieval-Augmented Generation (RAG) approach. It uses a fine-tuned GPT-Neo model to generate personalized, first-person responses that reflect my academic, professional, and personal experiences.
+A simplified Flask web server with basic chat functionality for testing core API features.
 
 ## Features
 
-- **Conversational AI:** Engages in dialogue and answers questions in a natural, friendly manner.
-- **Custom Curated Dataset:** I maintain a rich dataset with diverse categories (Biography, Education, Work Experience, Projects, Skills, Philosophy, Certifications, Interests, Achievements, Goals, Hobbies, Languages, Extracurricular Activities, and Values) stored in `curated_data.json`. This dataset gives the model context about my background.
-- **Retrieval-Augmented Generation (RAG):** When a query is made, the system retrieves the most relevant snippets from my dataset and uses them to generate a well-informed response.
-- **Error Handling and Logging:** I log the prompts and responses for continuous improvement and troubleshooting.
-- **Deployment Ready:** The project is set up with Flask and Gunicorn for deployment on platforms like Railway, with proper CORS handling for integration with my portfolio site.
+- **Health Check**: Simple status endpoint at `/`
+- **Chat Endpoint**: POST endpoint at `/chat` for processing queries
+- **Hardcoded Responses**: Recognizes common greetings and returns appropriate responses
+- **Simple Text Search**: Basic keyword matching against curated data
+- **Logging**: Logs all interactions to `logs/interactions.json`
+- **Error Handling**: Comprehensive error handling for various failure scenarios
 
+## Setup
 
-## Requirements
-
-- Python 3.7 or higher
-- `sentence-transformers`
-- `faiss-cpu`
-- `python-docx`
-- `Flask`
-- `Flask-Cors`
-- `PyPDF2`
-- `pdfplumber`
-- `numpy`
-- `requests`
-- `scikit-learn`
-- `torch`
-- `transformers`
-- `gunicorn`
-
-You can install these dependencies using pip:
-
+1. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Setup and Deployment
+2. Ensure you have a `curated_data.json` file (sample provided)
 
-### Clone the Repository:
+3. Run the application:
 ```bash
-git clone https://github.com/lacebx/c3-Arsene.git
-cd project-directory
+python app.py
 ```
 
-### Curate the Data:
+The server will start on `http://localhost:8080`
 
-I maintain my personal and professional background information in curated_data.json. This file is structured in a modular, first-person format and includes multiple categories such as Biography, Education, Work Experience, Projects, Skills, and more. The RAG system uses this file to retrieve context when generating responses.
+## API Endpoints
 
-### Run Locally:
+### GET /
+Health check endpoint that returns "Hello, world! I'm running."
 
-To test the chatbot locally:
+### POST /chat
+Processes user queries and returns responses.
 
-```bash
-python chatbotv1.py
-```
-### Deploying on Railway:
-
-My project is configured to run on Railway using Gunicorn. I use a Procfile with the following content:
-
-```bash
-web: gunicorn chatbotv1:app --bind 0.0.0.0:$PORT
+**Request Body:**
+```json
+{
+  "query": "your question here"
+}
 ```
 
-When I push changes to my Git repository, Railway automatically redeploys my app. Ensure that the environment variable PORT is correctly set by Railway (usually 8080).
+**Response:**
+```json
+{
+  "response": "bot response here"
+}
+```
 
-### CORS and Integration:
+**Error Responses:**
+- `400`: Bad request (invalid JSON, missing query, empty query)
+- `404`: Endpoint not found
+- `405`: Method not allowed
+- `500`: Internal server error
 
-I enable CORS in my Flask app so that my chatbot API can be accessed from my portfolio site without cross-origin issues. My portfolio widget uses JavaScript to interact with the deployed API.
+## Testing
 
-Usage
+Run the test script to verify functionality:
+```bash
+python test_api.py
+```
 
-After deploying, my chatbot API is available at a public URL (e.g., https://me0-minimvp-production.up.railway.app/chat). I integrate this endpoint into my portfolio as a chat widget. When a user submits a query, the following happens:
+## Logging
 
-#### Input Processing:
+All interactions are logged to `logs/interactions.json` with the following format:
+```json
+{
+  "timestamp": "2024-01-01T12:00:00.000Z",
+  "query": "user query",
+  "response": "bot response"
+}
+```
 
-The query is normalized and, if it’s a casual greeting (e.g., "hi", "hello"), a pre-defined response is returned immediately.
+## Greeting Recognition
 
-#### Context Retrieval:
+The system recognizes various greetings and responds appropriately:
+- "hi", "hello", "hey", "greetings"
+- "what is your name", "who are you"
+- "how are you", "what's up"
+- "good morning", "good afternoon", "good evening"
+- "thanks", "thank you"
+- "goodbye", "bye", "farewell"
 
-If the query is not a simple greeting, my system computes embeddings for the query and retrieves the most relevant snippets from curated_data.json using FAISS.
+## Text Search
 
-#### Response Generation:
-
-The retrieved snippets are combined with the query to form a prompt, which is then fed to the GPT-Neo model to generate a personalized response.
-
-#### Logging:
-
-The prompt and the generated response are logged for future refinement and analysis.
-
-## Customization and Fine-Tuning
-
-#### Dataset Updates:
-
-I continuously update curated_data.json as I gain new experiences, skills, and insights.
-
-#### Model Fine-Tuning:
-
-For further improvements, I have an optional refinement/ directory with scripts and a dataset (cleaned_data.json) for fine-tuning the model on my specific conversational style and desired responses(more info can be found in the README.md file inside the refinement dir)
-
-#### Parameter Tuning:
-You can adjust parameters such as max_new_tokens in the response generation function to balance between response length and latency.
-
-### Contributing
-
-This project reflects my personal journey and experiences. If you have suggestions or improvements, feel free to open an issue or submit a pull request. I welcome contributions that help refine and extend the capabilities of my virtual assistant.
-License
-
-This project is licensed under the MIT License.
-
-
-
-
-
+For non-greeting queries, the system performs simple keyword matching against the curated data and returns the most relevant document snippet.

@@ -1,0 +1,17 @@
+[
+  {
+    "content": "Python is a high-level programming language known for its simplicity and readability. It's widely used in web development, data science, and artificial intelligence."
+  },
+  {
+    "content": "Flask is a lightweight web framework for Python that makes it easy to build web applications and APIs. It's known for its simplicity and flexibility."
+  },
+  {
+    "content": "Machine learning is a subset of artificial intelligence that enables computers to learn and make decisions from data without being explicitly programmed."
+  },
+  {
+    "content": "APIs (Application Programming Interfaces) allow different software applications to communicate with each other. REST APIs are commonly used for web services."
+  },
+  {
+    "content": "Cybersecurity involves protecting computer systems, networks, and data from digital attacks. It includes practices like encryption, authentication, and monitoring."
+  }
+]

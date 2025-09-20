@@ -1,0 +1,10 @@
+{"timestamp": "2025-09-20T14:49:05.910418Z", "query": "hi", "response": "Hello! How can I help you today?"}
+{"timestamp": "2025-09-20T14:49:11.473037Z", "query": "python programming", "response": "Based on the available information: Python is a high-level programming language known for its simplicity and readability. It's widely used in web development, data science, and artificial intelligence...."}
+{"timestamp": "2025-09-20T15:42:19.227218Z", "query": "hi", "response": "Hello! How can I help you today?"}
+{"timestamp": "2025-09-20T15:42:19.235678Z", "query": "hello", "response": "Hello! How can I help you today?"}
+{"timestamp": "2025-09-20T15:42:19.245791Z", "query": "hey there", "response": "I'm not sure how to help with that. Could you please rephrase your question?"}
+{"timestamp": "2025-09-20T15:42:19.263556Z", "query": "how are you?", "response": "I'm doing well, thank you! How can I help you?"}
+{"timestamp": "2025-09-20T15:42:19.274107Z", "query": "python programming", "response": "Based on the available information: Python is a high-level programming language known for its simplicity and readability. It's widely used in web development, data science, and artificial intelligence...."}
+{"timestamp": "2025-09-20T15:42:19.283173Z", "query": "machine learning", "response": "Based on the available information: Machine learning is a subset of artificial intelligence that enables computers to learn and make decisions from data without being explicitly programmed...."}
+{"timestamp": "2025-09-20T15:42:19.288493Z", "query": "thanks", "response": "You're welcome!"}
+{"timestamp": "2025-09-20T15:42:19.297425Z", "query": "goodbye", "response": "Goodbye! Have a great day!"}
